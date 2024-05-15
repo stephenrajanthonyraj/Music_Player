@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .main-container{
+          background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),url('https://images.pexels.com/photos/1306791/pexels-photo-1306791.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+             height: 100vh;
+            background-size: cover;
+        }
+      .nav-item:hover .nav-link {
+        color: burlywood;
+      }
+      .nav-link {
+        color: white;
+      }
+      #logo {
+        height: 20%;
+        width: 7%;
+        border-radius: 60%;
+      }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+      <nav class="navbar navbar-expand-lg px-5">
+        <div class="container-fluid">
+          <img class="navbar-brand" id="logo" src="logo1.jpg" />
+          <button
+            class="navbar-toggler border border-white"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="home.html" id="home-nav"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="myplatlist.html" id="myplaylist-nav">My Playlist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html" id="about-nav">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html" id="contact-nav">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="register.html" id="login-nav">Logout</a>
+                <i class="fa-regular fa-user text-light"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5 d-flex justify-content-center align-items-center order-2 " >
+                  <div class="p-1 bg-white">
+                    <img src="https://wallpapercave.com/wp/qAMxHMB.jpg" alt="" width="100%" height="400px">
+                  </div>
+                </div>
+                <div class="col-lg-7 d-flex justify-content-start align-items-center order-1" style="height: 90vh;">
+                    <div>
+                        <h1 class="text-warning">About</h1>
+                        <p class="text-white">This website as to be explore more music from music lovers. music has art concerned with combining vocal or instrumental sounds for beauty of form or emotional expression, usually according to cultural standards of rhythm, melody, and, in most Western music, harmony. Both the simple folk song and the complex electronic composition belong to the same activity, music.</p>
+                    </div>
+                </div>
+            </div>
+         </div>
+          
+    </div>
+    <!-- <script src="islogin.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

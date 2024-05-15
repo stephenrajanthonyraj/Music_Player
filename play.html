@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Song Play Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    .main-container {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.pexels.com/photos/356006/pexels-photo-356006.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+      min-height: 100vh;
+      background-size: cover;
+    }
+    .card-play{
+      color: red;
+    }
+    .nav-item:hover .nav-link{
+          color: rgb(214, 58, 58);
+        }
+        #logo {
+        height: 20%;
+        width: 7%;
+        border-radius: 60%;
+      }
+      #searchid {
+        width: 40%;
+        margin-left: 5%;
+        margin-top: 2%;
+      }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="navbar navbar-expand-lg px-5">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Music Player</a>
+        <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarNav" aria-controls="navbarNav" >
+          <span class="navbar-toggler-icon "></span>
+        </button>
+        <div class="input-group mb-3" id="searchid" >
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+              aria-describedby="basic-addon2" />
+          <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                  Search
+              </button>
+          </div>
+      </div>
+        <div class="collapse navbar-collapse  " id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white" aria-current="page" href="home.html" id="home-nav">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="myplatlist.html" id="myplaylist-nav">My Playlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#" id="about-nav">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#" id="contact-nav">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="register.html" id="login-nav">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row justify-content-start mt-4" id="Card-Page">
+        <audio src="" id="audio"></audio>
+      </div>
+    </div>
+    
+  </div>
+  <div id="pop-msg" class="justify-content-center d-none" style="width: 100vw;height: 100vh;position: absolute;background-color: rgba(17, 17, 17, 0.795);top: 0;display: none;">
+    <div class="msg card p-3 mt-5" style="height: 50px;width: 300px;">Successfully added</div>
+  </div>
+
+  <script>
+
+    let cardBox = document.getElementById('Card-Page');
+    let audio = document.getElementById('audio');
+    let alljsonsongs
+    fetch('songdatas.json')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        alljsonsongs=data
+        data.forEach((e,i) => {
+            
+            cardBox.innerHTML+=`
+            <div class="card mb-2 col-lg-2 col-md-4 col-10 p-1 me-2" >
+              <div class=" w-100  align-items-center" >
+                <div   onclick=PlaySong('${e.path}','${i}')>
+                  <img
+                    src="https://media.istockphoto.com/id/185072721/photo/3d-music-notes-dancing-away.jpg?s=1024x1024&w=is&k=20&c=Bj0e3hRXn-rlcLeon4SuvKlzx52YEFyL7gmyFUtDMXA="
+                    alt="" width="100%" height="150px">
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="mt-3 ms-lg-3 ms-1 overflow-hidden" id="card${i}">
+                    <p class="song-play m-0">${e.songname} </p>
+                    <p class="song-play m-0">${e.artist}</p>
+                  </div>
+                  <div class="dropdown  me-2">
+                    <i class="bi bi-three-dots-vertical" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" onclick=addPlaylist('${i}')>Add Playlist</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `
+        });
+      })
+     
+function addPlaylist(index) {
+    let popmsg=document.getElementById('pop-msg')
+    let addSong = alljsonsongs[index]
+    let newSongData =  {
+         "song": addSong.songname,
+         "artist": addSong.artist,
+         "path": addSong.path
+       }
+
+let existSongData = localStorage.getItem('SongData') ? JSON.parse(localStorage.getItem('SongData')) : [];
+existSongData.push(newSongData);
+localStorage.setItem('SongData',JSON.stringify(existSongData));
+popmsg.classList.replace('d-none','d-flex')
+  setTimeout(() => {
+      popmsg.classList.replace('d-flex','d-none')
+      }, 1000);
+                
+  }  
+let preSong=null
+let playStatus=false
+function PlaySong(path,index) {
+    let audio =document.getElementById('audio')
+    audio.src=`asset/${path}`
+        
+        
+let currentSong=index
+if(preSong == null){
+   preSong=currentSong
+   document.getElementById(`card${preSong}`).style.color='red'
+   audio.play()
+   }
+else if(preSong == currentSong)
+   {
+      document.getElementById(`card${preSong}`).style.color='red'
+      if(playStatus == true){
+      playStatus=false
+      audio.pause()
+    }
+    else{
+       audio.play()
+       playStatus=true
+      }
+        }
+    else{  
+       document.getElementById(`card${preSong}`).style.color='black'         
+       preSong=currentSong                
+       document.getElementById(`card${preSong}`).style.color='red' 
+       audio.play()
+       playStatus=true 
+      }
+      }
+  </script>
+  <!-- <script src="islogin.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

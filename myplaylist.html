@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My-Playlist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        @media (min-width:641px) {
+            .main-container {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.pexels.com/photos/356006/pexels-photo-356006.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+                min-height: 100vh;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        }
+
+        @media(max-width:640px) {
+            .playlistsm {
+                background: #000;
+                margin-top: 50px;
+            }
+
+            .playlistsm-head {
+                color: white;
+            }
+        }
+
+        .main-container {
+            background: #000;
+            height: 100vh;
+        }
+
+        .music-image {
+            background-image: url('https://images.pexels.com/photos/164853/pexels-photo-164853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            height: 300px;
+            background-size: cover;
+            padding: 3px;
+        }
+
+        .control-btns {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            background-color: rgb(52, 52, 189);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            line-height: 10px;
+        }
+
+        .play-btn {
+            font-size: 28px;
+            width: 50px;
+            height: 50px;
+            line-height: 10px;
+        }
+
+        .song-list-card:hover p {
+            color: red;
+        }
+
+        .song-list-card:hover {
+            border: 1px solid rgb(241, 131, 131);
+        }
+
+        .nav-item:hover .nav-link {
+            color: rgb(214, 58, 58);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <nav class="navbar navbar-expand-lg px-5 "
+            style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">myplaylist</a>
+                <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="home.html" id="home-nav">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="myplaylist-nav">My Playlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="about-nav">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="contact-nav">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="login-nav">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid d-flex justify-content-between align-items-center flex-md-row flex-column"
+            style="height: 90vh;">
+            <div
+                class=" col-lg-7 col-md-6 col-10  me-4 w-sm-75 mb-md-0 mb-3 vh-75 d-flex justify-content-center align-items-center">
+                <div class="col-lg-7 col-10 card  p-2">
+                    <div class="music-image d-flex justify-content-center align-items-center">
+                        <h4 class="text-white">Good Music</h4>
+                    </div>
+                    <div class="song-details text-center pt-3">
+                        <p class="my-0" id="artist">Artist : Aniruth</p>
+                        <p class="my-0" id="songname">Song : Aluma Doluma</p>
+                    </div>
+                    <div class="music-timing pt-4 pb-3 text-center">
+                        <input type="range" class="w-75 text-primary" id="progressbar" value="0">
+                    </div>
+                    <audio src="" controls id="song" class="visually-hidden"></audio>
+                    <div class="music-btns d-flex justify-content-center align-items-center pb-4">
+                        <div class="control-btns left-btn" id="back-btn" onclick="backBtn()">
+                            <i class="bi bi-arrow-left-short"></i>
+                        </div>
+                        <div class="control-btns play-btn play" id="play-btn">
+                            <i class="bi bi-play" id="play-icon"></i>
+                        </div>
+                        <div class="control-btns next-btn" onclick="nextBtn()" id="next-btn">
+                            <i class="bi bi-arrow-right-short"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-10 card ms-4 playlistsm" style="height: 90vh;opacity: 0.8; ">
+                <div class="playlist-heading px-3 py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="playlistsm-head">Your Play List</h5>
+                    <a href="addsong.html" class="btn btn-success ms-auto">Add Song</a>
+                </div>
+                <div class="song-list px-3 h-100" id="song-list" style="overflow-y: auto;">
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="islogin.js"></script> -->
+    <script>
+        let backbtn = document.getElementById("back-btn");
+        let playbtn = document.getElementById('play-btn');
+        let nextbtn = document.getElementById('next-btn');
+        let song = document.getElementById('song');
+        let playicon = document.getElementById('play-icon');
+        let progressbar = document.getElementById('progressbar');
+        let song_list = document.getElementById('song-list');
+
+        let getSongName = document.querySelectorAll('p')
+        let storedSongs = JSON.parse(localStorage.getItem('SongDatas'))
+
+        let print = console.log;
+
+        let songcount = 0;
+
+        //initialize song 
+
+
+
+
+
+        //Play list append
+        let AllSongs
+        function songListUpdata() {
+            song_list.innerHTML = ''
+            AllSongs = JSON.parse(localStorage.getItem('SongDatas'));
+            AllSongs.forEach((e, index) => {
+                let { song, path, artist } = e
+                let songdata = [song, path, artist, index]
+                song_list.innerHTML += `
+                <div class="card mb-2 song-list-card" >
+                        <div class="d-flex w-100 ps-3 align-items-center">
+                            <div>
+                                <img src="https://media.istockphoto.com/id/185072721/photo/3d-music-notes-dancing-away.jpg?s=1024x1024&w=is&k=20&c=Bj0e3hRXn-rlcLeon4SuvKlzx52YEFyL7gmyFUtDMXA=" alt="" width="40px" height="40px">
+                            </div>
+                            <div  class="mt-3 ms-3" onclick=PlaySong('${e.path}','${index}')> 
+                                <p class="song-play" id="song${index}" > ${e.song}</p>
+                            </div>
+                            <div class="dropdown ms-auto me-2">
+                                <i class="bi bi-three-dots-vertical" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="songdelete(${index})">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            })
+
+        }
+        songListUpdata()
+        //onclick="playcardSong('${songdata}')"
+        // play card song funtion
+        // function playcardSong(data) {
+
+        //     song.src=data.split(',').slice(0)[1]
+        //     songcount=data.split(',').slice(0)[3]
+        //     progressbar.max=song.duration;
+        //     play()
+        //     songData()
+        // }
+
+        let startSong = () => {
+            song.src = AllSongs[0].path
+            progressbar.max = song.duration;
+        }
+        startSong()
+
+        let songcard = document.querySelectorAll('.song-play');
+
+        // play btn funtion
+        playbtn.addEventListener('click', () => {
+            progressbar.max = song.duration;
+            progressbar.value = song.currentTime
+            playsong()
+        })
+
+        function playsong() {
+            if (playbtn.classList.contains('play')) {
+                playicon.classList.replace('bi-play', 'bi-pause')
+                playbtn.classList.replace('play', 'pause')
+                song.play();
+                setInterval(() => {
+                    progressbar.value = song.currentTime;
+                }, 500)
+
+            }
+            else {
+                playbtn.classList.replace('pause', 'play')
+                playicon.classList.replace('bi-pause', 'bi-play')
+                song.pause();
+
+            }
+        }
+
+        progressbar.onchange = function () {
+
+            song.currentTime = progressbar.value;
+            if (progressbar.max == song.currentTime) {
+                nextBtn()
+            }
+        }
+
+
+
+        function songdelete(index) {
+            let allsongs = JSON.parse(localStorage.getItem('SongDatas'))
+            allsongs.splice(index, 1);
+            localStorage.setItem('SongDatas', JSON.stringify(allsongs))
+            songListUpdata()
+        }
+
+        let preSong = null
+        let playStatus = false
+        let currentSong = 0
+        function PlaySong(path, index) {
+            let audio = document.getElementById('song')
+            audio.src = `music/${path}`
+
+
+            currentSong = index
+            if (preSong == null) {
+                console.log(playicon.getAttribute('class'))
+                preSong = currentSong
+                document.getElementById(`song${preSong}`).style.color = 'red'
+                playicon.classList.replace('bi-play', 'bi-pause')
+                audio.play()
+            }
+            else if (preSong == currentSong) {
+                document.getElementById(`song${preSong}`).style.color = 'red'
+                if (playStatus == true) {
+                    playStatus = false
+                    playicon.classList.replace('bi-pause', 'bi-play')
+                    audio.pause()
+
+                }
+                else {
+                    playicon.classList.replace('bi-play', 'bi-pause')
+                    audio.play()
+                    playStatus = true
+                }
+            }
+            else {
+                document.getElementById(`song${preSong}`).style.color = 'black'
+                preSong = currentSong
+                document.getElementById(`song${preSong}`).style.color = 'red'
+                playicon.classList.replace('bi-play', 'bi-pause')
+                audio.play()
+                playStatus = true
+            }
+            songData()
+        }
+
+
+        function nextBtn() {
+
+            let nextSongIndex = parseInt(currentSong) + 1
+            if (nextSongIndex > AllSongs.length - 1) {
+                nextSongIndex = 0
+            }
+            PlaySong(AllSongs[nextSongIndex].path, nextSongIndex)
+            songData()
+        }
+
+        function backBtn() {
+            let preSongIndex = parseInt(currentSong) - 1
+            if (preSongIndex < 0) {
+                preSongIndex = AllSongs.length - 1
+            }
+            PlaySong(AllSongs[preSongIndex].path, preSongIndex)
+            songData()
+
+        }
+        function songData() {
+            let artistname = document.getElementById('artist');
+            let songname = document.getElementById('songname');
+            artistname.innerText = AllSongs[currentSong].song;
+            songname.innerText = AllSongs[currentSong].artist
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

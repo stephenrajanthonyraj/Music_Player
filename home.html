@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Song Play Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+<!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />     -->
+    <script src="https://kit.fontawesome.com/9a187dbfa4.js" crossorigin="anonymous"></script>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body{
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.8)
+          ),
+          url("https://images.pexels.com/photos/96380/pexels-photo-96380.jpeg?auto=compress&cs=tinysrgb&w=600");
+        height: 100vh;
+        width: 100vw;
+        background-size: contain;
+      }
+      .card-play {
+        color: red;
+      }
+      .nav-item:hover .nav-link {
+        color: burlywood;
+      }
+      .nav-link {
+        color: white;
+      }
+      #logo {
+        height: 20%;
+        width: 7%;
+        border-radius: 60%;
+      }
+      #searchid {
+        width: 40%;
+        margin-left: 5%;
+        margin-top: 2%;
+      }
+      #cid{
+        height: 10%;
+        width: 40%;
+        margin-left: 40%;
+      }
+      #carouselid{
+        height: 10%;
+        width: 40%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <nav class="navbar navbar-expand-lg px-5">
+        <div class="container-fluid">
+          <img class="navbar-brand" id="logo" src="logo1.jpg" />
+          <div class="input-group mb-3" id="searchid">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="basic-addon2"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                Search
+              </button>
+            </div>
+          </div>
+          <button
+            class="navbar-toggler border border-white"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="home.html" id="home-nav"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="myplatlist1.html" id="myplaylist-nav">My Playlist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html" id="about-nav">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html" id="contact-nav">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="register.html" id="login-nav">Logout</a>
+                <!-- <i class="fa-regular fa-user text-light "></i> -->
+              </li>
+              <div>
+              <li class="nav-item">
+                <i class="fa-solid fa-circle-user" style="height: 30px;width: 30px;"></i>
+              </li>
+            </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="cid">
+          <div class="carousel-item active" data-bs-interval="2000">
+            <img id="carouselid" src="https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/2e/16/2e/2e162ed5-e453-9ace-8179-6be260d9386d/886446186283.jpg/1200x1200bb.jpg" class="d-block" alt="...">
+          </div>
+          <div  class="carousel-item" data-bs-interval="2000">
+            <img id="carouselid" src="https://static.qobuz.com/images/covers/15/72/3614593247215_600.jpg"  alt="..." >
+          </div>
+          <div  class="carousel-item" data-bs-interval="2000">
+            <img id="carouselid" src="https://i.scdn.co/image/ab67616d0000b273a2cb580dbbe32520abdf503e"  alt="..." >
+          </div>
+          <div  class="carousel-item" data-bs-interval="2000">
+            <img id="carouselid" src="https://c.saavncdn.com/902/3-Telugu-2012-20210522201835-500x500.jpg"  alt="..." >
+          </div>
+        </div>
+      </div>
+      <div>
+      <div class="row row-cols-1 row-cols-md-6  mx-5 mt-5 ">
+        <div class="col"  >
+          <div class="card" >
+            <img src="https://filmfare.wwmindia.com/thumb/content/2016/Aug/ar_1470046532.jpg?width=1200&height=900" class="card-img-top" alt="loaded">
+          </div>
+        </div>
+        <div class="col">
+          <div class="card ">
+            <img src="https://media.newstracklive.com/uploads/entertainment-news/regional-cinema-news/Jul/04/big_thumb/3_5f004e75e09e7.jpg" class="card-img-top" alt="...">
+          </div>
+        </div>
+        <div class="col">
+          <div class="card ">
+            <img src="https://www.m9.news/wp-content/uploads/2024/02/Anirudh-Ravichander.jpg" class="card-img-top" alt="...">
+          </div>
+        </div>
+        <div class="col">
+          <div class="card ">
+            <img src="https://static.toiimg.com/thumb/msid-68049711,width-400,resizemode-4/68049711.jpg" class="card-img-top" alt="load">
+          </div>
+        </div>
+        <div class="col">
+          <div class="card ">
+            <img src="https://www.thenewstuff.in/sites/default/files/2022-08/jpg.jpg" class="card-img-top" alt="..." style="height: 30%;">
+          </div>
+        </div>
+        <div class="col">
+          <div class="card ">
+            <img src="https://static.toiimg.com/photo/81450030.cms" class="card-img-top" alt="load">
+          </div>
+        </div>
+    </div>
+  
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

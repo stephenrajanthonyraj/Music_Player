@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="poppins.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .main-container {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.pexels.com/photos/96380/pexels-photo-96380.jpeg?auto=compress&cs=tinysrgb&w=600');
+            min-height: 100vh;
+            background-size: cover;
+        }
+        #reg-box{
+            display: none;
+            height: 80vh;
+            margin-top: 5%;
+            border-radius: 3%;
+        }
+        #login-box{
+            height: 60vh;
+            margin-top: 10%;
+            border-radius: 3%;
+        }
+        #box{
+            color:chocolate;
+        }
+        #login-link:hover,#reg-link:hover{
+            color:maroon;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="row justify-content-center align-items-center" id="box" >
+            <div class="col-lg-4 col-md-5 col-10  p-3" style="background-color: rgb(241, 235, 235);" id="reg-box">
+                <form class="row g-1" id="reg-form">
+                    <h2 class="text-center">Register</h2>
+                    <div id="reg-msg"></div>
+                    <div class="col-12">
+                        <label for="reg-uname" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="reg-uname" required pattern="[A-Za-z0-9]{5,}">
+                        <p style="font-size: 12px;" class="p-1 pt-1">Use Letter and numbers more than 5 char</p>
+                    </div>
+                    <div class="col-12">
+                        <label for="reg-password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="reg-password" required pattern="[A-Za-z]{3,}[0-9]{3,}">
+                        <p style="font-size: 12px;" class="p-1 pt-1">Use more than 3 Letter and more than 3 numbers</p>
+                    </div>
+                    <div class="col-12">
+                        <label for="repassword" class="form-label">Re-Password</label>
+                        <input type="password" class="form-control" id="repassword">
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="regCheck">
+                            <label class="form-check-label" for="regCheck">
+                                Check me out
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary w-100" id="reg-btn">Register</button>
+                    </div>
+                    <div class="text-center pb-5">
+                        Have an account <a href="#" id="login-link">Login here</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 col-md-5 col-10  p-3" style="background-color: rgb(241, 235, 235);" id="login-box">
+                <form class="row g-1" id="login-form">
+                    <h2 class="text-center">Login</h2>
+                    <div id="login-msg"></div>
+                    <div class="col-12">
+                        <label for="uname" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="uname">
+                    </div>
+                    <div class="col-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="loginCheck">
+                            <label class="form-check-label" for="loginCheck">
+                                Accept terms and conditions
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary w-100" id="login-btn">Login</button>
+                    </div>
+                    <div class="text-center pb-5">
+                        Don't have an account <a href="#" id="reg-link" >Register here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        // register elements
+        let regLink = document.getElementById('reg-link');
+        let regBox = document.getElementById('reg-box');
+        // register form user details
+        let regName = document.getElementById('reg-uname');
+        let regPass = document.getElementById('reg-password');
+        let regRepass = document.getElementById('repassword');        
+        let regBtn = document.getElementById('reg-btn');        
+        let regForm = document.getElementById('reg-form');        
+        let regMsg = document.getElementById('reg-msg');        
+
+        //  login elements
+        let loginLink = document.getElementById('login-link');
+        let loginBox = document.getElementById('login-box');
+
+        // login user details
+        let loginUname = document.getElementById('uname');
+        let loginPass = document.getElementById('password');
+        let loginCheck = document.getElementById('loginCheck');
+        let loginBtn= document.getElementById('login-btn');
+        let loginForm= document.getElementById('login-form');
+        let loginMsg= document.getElementById('login-msg');
+
+
+        loginLink.addEventListener('click', () => {  
+            regBox.style.display = 'none'
+            loginBox.style.display = 'block'
+
+        })
+        regLink.addEventListener('click', () => {  
+            regBox.style.display = 'block'
+            loginBox.style.display = 'none'
+
+        })
+
+        regBtn.addEventListener('click',(e)=>{   
+            e.preventDefault();         
+            if(regForm.checkValidity()){
+                if(regPass.value == regRepass.value){
+                    let newUserData = {
+                        'uname' : regName.value,
+                        'password' : regPass.value
+                    }
+                    let existUserData = localStorage.getItem('UserDetails') ? JSON.parse(localStorage.getItem('UserDetails')) : [];
+                    existUserData.push(newUserData);
+                    localStorage.setItem('UserDetails',JSON.stringify(existUserData));
+                    sessionStorage.setItem('login','true');
+                    window.location.href = 'home.html';
+
+                }
+                else{
+                    regMsg.innerHTML = '<p class="text-danger bg-danger-subtle p-1">Password and Re-Password are not match</p>'
+                }
+            }           
+
+        })
+       
+        function IsUser() {
+            let ExistData = JSON.parse(localStorage.getItem('UserDetails'));
+            let status = false;
+            ExistData.forEach(user=> {
+                if(user.uname == loginUname.value && user.password == loginPass.value)
+                {
+                    status = true;
+                }
+            });
+            return status;
+        }
+        
+       loginBtn.addEventListener('click',(e)=>{
+            e.preventDefault()
+            if(loginUname.value != '' && loginPass.value != '' && loginCheck.checked == true){
+                if(IsUser()){
+                    sessionStorage.setItem('login','true')
+                    window.location.href = 'home.html';
+                }
+                else{
+                    loginMsg.innerHTML = `<p class="text-danger bg-danger-subtle p-2">User can't recognized</p>`;
+                    loginForm.reset()
+                }
+
+            }
+            else{
+                loginMsg.innerHTML = '<p class="text-danger bg-danger-subtle p-2">Fill all fields</p>'
+                loginForm.reset()
+            }
+       })
+
+       
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
